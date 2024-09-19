@@ -104,6 +104,11 @@ class ToolRecords(Base):
     employee = relationship('Employee', back_populates='tool_records')
     store_employee = relationship('StoreEmployee', back_populates='tool_records')
 
+    def __repr__(self):
+        return f"Tool record id: {self.id}. {self.employee.name} has taken {self.tool.name} " +\
+             f"at {self.date_taken}. The tool is returned on {self.date_returned} " +\
+             f"{self.store_employee} was in charge"
+
 
 
 

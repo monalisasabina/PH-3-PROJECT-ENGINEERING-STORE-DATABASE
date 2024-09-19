@@ -1,4 +1,4 @@
-PH3 PROJECT: ENGINEERING TOOLS STOCKTAKING APP
+# PH3 PROJECT: ENGINEERING TOOLS STOCKTAKING APP
 
 
 <!-- GUIDE
@@ -14,3 +14,6 @@ Screenshots and links to resources that you used throughout are also useful to u
 
 
  -->
+
+##References
+1. README: https://www.markdownguide.org/cheat-sheet/

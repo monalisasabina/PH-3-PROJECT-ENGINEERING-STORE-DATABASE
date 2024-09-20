@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 from datetime import datetime
-from sqlalchemy.orm import declarative_base,sessionmaker,relationship
-from sqlalchemy import MetaData, create_engine,Column,Integer,String,DateTime,ForeignKey
+from sqlalchemy.orm import declarative_base,relationship
+from sqlalchemy import MetaData,Column,Integer,String,DateTime,ForeignKey
 import uuid
 
 
@@ -15,9 +15,6 @@ metadata = MetaData(naming_convention=convention)
 
 Base = declarative_base(metadata=metadata)
 
-engine=create_engine('sqlite:///tools_store.db')
-Session = sessionmaker(bind=engine)
-session = Session()
 
 
 # generating id string

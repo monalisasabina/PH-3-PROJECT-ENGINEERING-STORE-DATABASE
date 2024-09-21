@@ -51,8 +51,8 @@ class StoreEmployee(Base):
     tool_records = relationship('ToolRecords', back_populates='store_employee')
 
     def __repr__(self):
-        return f"<Store Employee id: {self.id}," +\
-            f"Name: {self.name}," +\
+        return f"<Store Employee id: {self.id}, " +\
+            f"Name: {self.name}, " +\
             f"Role: {self.role}"
 
 
@@ -101,8 +101,8 @@ class ToolRecords(Base):
 
     def __repr__(self):
         return f"Tool record id: {self.id}. {self.employee.name} has taken {self.tool.name} " +\
-             f"at {self.date_taken}. The tool is returned on {self.date_returned} " +\
-             f"{self.store_employee} was in charge"
+             f"at {self.date_taken}. The tool was returned on {self.date_returned} " +\
+             f"{self.store_employee.name} was in charge"
 
 
 

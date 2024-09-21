@@ -86,6 +86,35 @@ if __name__ == '__main__':
     session.add_all([record1,record2])
     session.commit()
 
+    #  TESTING
+    # displaying employee list
+    print('')
+    print('Employee list')
+    employees = session.query(Employee).all()
+    print(employees)
+
+    # displaying store employee list
+    print('')
+    print('Store Employee list')
+    store_employees = session.query(StoreEmployee).all()
+    print(store_employees)
+
+    # displaying tool list
+    print('')
+    print('Tool list')
+    tools = session.query(Tools).all()
+    print(tools)
+
+    # displaying tool records list
+    print('')
+    print('Tool Records list')
+    records = session.query(ToolRecords).all()
+    print(records)
+
+
+
+
+
 
 
 

@@ -3,7 +3,7 @@
 from datetime import datetime
 from sqlalchemy.orm import declarative_base,relationship
 from sqlalchemy import MetaData,Column,Integer,String,DateTime,ForeignKey
-import uuid
+# import uuid
 
 
 
@@ -11,22 +11,19 @@ convention = {
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
 }
 metadata = MetaData(naming_convention=convention)
-
-
 Base = declarative_base(metadata=metadata)
 
 
-
 # generating id string
-def generate_uuid():
-    return str(uuid.uuid4())
+# def generate_uuid():
+#     return str(uuid.uuid4())
 
 
 # creating employees table: these are company employees, the ones who will be taking tools
 class Employee(Base):
     __tablename__ = "employees"
 
-    id = Column(String,primary_key=True, default=generate_uuid)
+    id = Column(Integer, primary_key=True)
     name = Column(String)
     department = Column(String)
     role = Column(String)
@@ -47,7 +44,7 @@ class Employee(Base):
 class StoreEmployee(Base):
     __tablename__ = "store_employees"
 
-    id = Column(String,primary_key=True, default=generate_uuid)
+    id = Column(Integer,primary_key=True)
     name = Column(String)
     role = Column(String)
 
@@ -66,7 +63,7 @@ class StoreEmployee(Base):
 class Tools(Base):
     __tablename__ = "tools"
 
-    id = Column(String,primary_key=True, default=generate_uuid)
+    id = Column(Integer,primary_key=True)
     name = Column(String)
     brand = Column(String)
     purchase_date= Column(DateTime, default = datetime.utcnow)
@@ -84,17 +81,18 @@ class Tools(Base):
     
 
 # creating the tool records model: it should shows which tool was taken and by who
+# serves as an association table
 class ToolRecords(Base):
     __tablename__ = "toolrecords"
 
-    id = Column(String,primary_key=True, default=generate_uuid)
+    id = Column(Integer,primary_key=True)
     date_taken = Column(DateTime, default= datetime.utcnow)
     date_returned = Column(DateTime)
 
     # foreign keys
-    tool_id = Column(String, ForeignKey('tools.id'))
-    employee_id = Column(String, ForeignKey('employees.id'))
-    store_employee_id= Column(String, ForeignKey('store_employees.id'))
+    tool_id = Column(Integer, ForeignKey('tools.id'))
+    employee_id = Column(Integer, ForeignKey('employees.id'))
+    store_employee_id= Column(Integer, ForeignKey('store_employees.id'))
 
     # relationships
     tool = relationship('Tools', back_populates='tool_records')

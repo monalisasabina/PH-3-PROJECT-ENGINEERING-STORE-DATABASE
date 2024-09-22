@@ -3,8 +3,6 @@
 from datetime import datetime
 from sqlalchemy.orm import declarative_base,relationship
 from sqlalchemy import MetaData,Column,Integer,String,DateTime,ForeignKey
-# import uuid
-
 
 
 convention = {
@@ -12,11 +10,6 @@ convention = {
 }
 metadata = MetaData(naming_convention=convention)
 Base = declarative_base(metadata=metadata)
-
-
-# generating id string
-# def generate_uuid():
-#     return str(uuid.uuid4())
 
 
 # creating employees table: these are company employees, the ones who will be taking tools
@@ -35,11 +28,10 @@ class Employee(Base):
         return f"<Employee id: {self.id}, " +\
             f"Name: {self.name}, " +\
             f"Department: {self.department}, " +\
-            f"Role: {self.role}"
+            f"Role: {self.role} >"
     
     
     
-
 # creating store employee model: these are employees that work in the store
 class StoreEmployee(Base):
     __tablename__ = "store_employees"
@@ -53,9 +45,7 @@ class StoreEmployee(Base):
     def __repr__(self):
         return f"<Store Employee id: {self.id}, " +\
             f"Name: {self.name}, " +\
-            f"Role: {self.role}"
-
-
+            f"Role: {self.role} >"
 
 
 
@@ -76,7 +66,7 @@ class Tools(Base):
             f"Name: {self.name}, " +\
             f"Brand: {self.brand}, " +\
             f"Date Bought: {self.purchase_date}, " +\
-            f"No. of Tools: {self.no_of_tools}"
+            f"No. of Tools: {self.no_of_tools} >"
     
     
 
@@ -87,7 +77,7 @@ class ToolRecords(Base):
 
     id = Column(Integer,primary_key=True)
     date_taken = Column(DateTime, default= datetime.utcnow)
-    date_returned = Column(DateTime)
+    date_returned = Column(String)
 
     # foreign keys
     tool_id = Column(Integer, ForeignKey('tools.id'))
@@ -100,9 +90,9 @@ class ToolRecords(Base):
     store_employee = relationship('StoreEmployee', back_populates='tool_records')
 
     def __repr__(self):
-        return f"Tool record id: {self.id}. {self.employee.name} has taken {self.tool.name} " +\
-             f"at {self.date_taken}. The tool was returned on {self.date_returned} " +\
-             f"{self.store_employee.name} was in charge"
+        return f"<Tool record id: {self.id}. {self.employee.name} has taken {self.tool.name} " +\
+             f"at {self.date_taken}. The tool was returned on {self.date_returned}" +\
+             f". {self.store_employee.name} was in charge>"
 
 
 

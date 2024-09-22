@@ -18,3 +18,5 @@ Screenshots and links to resources that you used throughout are also useful to u
 ##References
 1. README: https://www.markdownguide.org/cheat-sheet/
 2. Building CLI: https://www.youtube.com/watch?v=kTaqR1WyT8A
+3. Using Click: https://click.palletsprojects.com/en/8.1.x/commands/#merging-multi-commands
+4. Using getpass() for passwords: https://www.youtube.com/watch?v=hk3ubc1-ZGg

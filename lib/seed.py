@@ -3,8 +3,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import Employee,Tools,StoreEmployee,ToolRecords,Base,datetime
-from faker import Faker #(pip install faker)
-import random
+
 
 if __name__ == '__main__':
 
@@ -15,9 +14,6 @@ if __name__ == '__main__':
 
     # creating all the tables
     Base.metadata.create_all(engine)
-
-    # initializing Faker
-    fake = Faker()
 
     # avoiding repetition of data when entering data in the database
     session.query(Employee).delete()
@@ -41,18 +37,16 @@ if __name__ == '__main__':
     
 
     # store employees list
-    store_role = ['Store Manager','Store Clerk','Intern']
+    fauz = StoreEmployee(name="Fauz Mohammed",role="Store Manager")
+    ruth = StoreEmployee(name="Ruth Ng'ang'a", role="Store Clerk")
+    joseph =StoreEmployee(name="Jennifer Mumo", role="Store Clerk")
+    elizabeth = StoreEmployee(name="Elizabeth Kipkorir", role="Intern")
+    jane = StoreEmployee(name="Jane Ouma", role="Intern")
+    
+    session.add_all([fauz,ruth,joseph,elizabeth,jane])
+    session.commit()
 
-    store_employees = []
-    for i in range(5):
-        store_employee = StoreEmployee(
-            name=fake.unique.name(),
-            role=random.choice(store_role)
-        )
 
-        session.add(store_employee)
-        session.commit()
-        store_employees.append(store_employee)
 
 
     #tool list
@@ -118,25 +112,7 @@ if __name__ == '__main__':
 
 
 
-    # tools list
-    # store_tools=['Pliers','Multimeter','Welding Machine','Screw Driver Set','Hammer','Angle-Grinder',
-    #        'Adjustable spanner','Long-Nose Pliers','Hack saw','Tape Measure','Vernier Caliper']
 
-    # store_tool_brands=['Stanley','Fluke','Craftsman','Makita','Iveco']
-
-    # tools = []
-    # for i in range(11):
-    #     tool = Tools(
-
-    #     name = random.choice(store_tools),
-    #     brand = random.choice(store_tool_brands),
-    #     no_of_tools = random.randint(2,15)
-
-    #     )
-
-    #     tools.append(tool)
-    #     session.add_all(tools)
-    #     session.commit()
 
 
 

@@ -3,20 +3,23 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from getpass import getpass
 
-
+# Setting up a session
 engine=create_engine('sqlite:///tools_store.db')
 Session = sessionmaker(bind=engine)
 session = Session()
 
+# Method shuts down the CLI
 def exit_program():
     print("Goodbye!")
     exit()
     
-# employee C,R,U,D methods
+# Employee C,R,U,D methods.
+# Method displays the list of employees in the store's data database.
 def employee_list():
     employees = session.query(Employee).all()
     print(employees)
 
+# Method finds the name of an employee in the database.
 def find_employee_by_name():
     name=input("Enter the employee's name: ")
     employee = session.query(Employee).filter_by(name=name).first()
@@ -24,6 +27,7 @@ def find_employee_by_name():
         f"Employee {name} not found" 
     )
 
+# Method finds the employee's id in the store database.
 def find_employee_by_id():
     id = input("Enter the employee's id: ")
     employee = session.query(Employee).get(id)
@@ -31,6 +35,7 @@ def find_employee_by_id():
         f"Employee id: {id} not valid"
     )
 
+# Method adds a new employee in the store database.
 def create_employee():
     name =input("Enter the new employee's name: ")
     department =input("Enter the new employee's department: ")
@@ -43,11 +48,14 @@ def create_employee():
       print(new_employee)
 
     else:
+        # The warning is given out if one or all fields were left blank.
         print("Warning: One or all fields are blank")
 
+# Method updates an employees credentials in the store database.
 def update_employee():
     id = input("Enter the employee's id: ")
     employee =session.query(Employee).get(id)
+
     if employee:
         name = input("Enter the employee's new name: ")
         employee.name = name
@@ -60,21 +68,25 @@ def update_employee():
         print(employee)
     return None
 
+# Method deletes an employee from the store database.
 def delete_employee():
     id = input("Enter the employee's id: ")
-    fired_employee = session.query(Employee).get(id)
-    if fired_employee:
-        session.delete(fired_employee)
+    delete_employee = session.query(Employee).get(id)
+    if delete_employee:
+        session.delete(delete_employee)
         session.commit()
-        print(fired_employee)
+        print(delete_employee)
     return None
 
 
+
 # STORE EMPLOYEE C,R,U,D
+# Method displays a list of store employees int the store database.
 def store_employee_list():
     store_employees = session.query(StoreEmployee).all()
     print(store_employees)
 
+# Method finds a store employee by name.
 def find_store_employee_by_name():
     name = input("Enter the employee's name: ")
     store_employee = session.query(StoreEmployee).filter_by(name=name).first()
@@ -82,6 +94,7 @@ def find_store_employee_by_name():
         f"Store Employee {name} not found" 
     )
 
+# Method finds the store employees id. 
 def find_store_employee_by_id():
     id = input("Enter the employee's id: ")
     store_employee = session.query(StoreEmployee).get(id)
@@ -89,6 +102,7 @@ def find_store_employee_by_id():
         f"Store Employee id: {id} not valid"
     )
 
+# Method adds a new store employee.
 def create_store_employee():
     name =input("Enter the new store employee's name: ")
     role = input("Enter the new store employee's role: ")
@@ -102,6 +116,7 @@ def create_store_employee():
     else:
         print("Warning: One or all fields are blank") 
 
+# Method updates the store employee credentials.
 def update_store_employee():
     id = input("Enter the employee's id: ")
     store_employee =session.query(StoreEmployee).get(id)
@@ -115,6 +130,7 @@ def update_store_employee():
         print(store_employee)
     return None        
 
+# Method deletes a store employee in the database.
 def delete_store_employee():
     id = input("Enter the employee's id: ")
     fired_store_employee = session.query(StoreEmployee).get(id)
@@ -124,7 +140,9 @@ def delete_store_employee():
         print(fired_store_employee)
     return None
 
+
 # TOOLS C,R,U,D
+
 def tool_list():
     tools = session.query(Tools).all()
     print(tools)

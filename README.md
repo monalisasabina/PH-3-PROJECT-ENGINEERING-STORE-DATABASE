@@ -23,7 +23,7 @@ The most important files in the directory are :
 
       [ENGINEERING_STORE_DATABASE_ERD](https://lucid.app/lucidspark/96e090bd-abbb-48d8-8946-6ee08fde2b24/edit?beaconFlowId=CF240903351EB75F&invitationId=inv_73e3c522-d98e-4be5-9d63-1223880795b1&page=0_0#) 
 
-      ![DATABASE_ERD](ENGINEERING STORE ERD.png)
+      ![DATABASE_ERD](./ENGINEERING%STORE%ERD.png)
       
       The table has the following columns: id, date_taken and date_returned, tool_id, employee_id, and store_employee_id.
             
@@ -62,9 +62,9 @@ The most important files in the directory are :
                               print(tools)
                            
   
-  4. debug.py: It was used for debugging and also for displaying the same data in seed.py, First you have to create an virtual environment with ```pipenv shell``` command then use command python lib/seed.py to push the data in database then run command ```python lib/debug.py``` to debug or also used it to display data by entering: ```session.query(Tools).all()``` to display the tool list.
+  4. debug.py: It was used for debugging and also for displaying the same data in seed.py using ipdb, First you have to create an virtual environment with ```pipenv shell``` command then use command ```python lib/seed.py``` to push the data in database then run command ```python lib/debug.py``` to debug or also used it to display data by entering: ```session.query(Tools).all()``` to display the tool list.
 
-  5. helpers.py: It consists of CRUD- Create, Read , Update and Delete functions or methods for each table in the database. First I created a session then the functions followed.
+  5. helpers.py: It consists of CRUD- Create, Read , Update and Delete functions or methods for each table in the database. Before the functions I have the session set up first.
 
   6. cli.py: It consists of Python code that defines the structure of the Command Line Interface,CLI. For my code I have used two approaches: one, the menu() approach and click() approach. I have commented the Click approach way which I worked on earlier so the menu() approach works which I preferred using. To run the CLI, use the command ```python lib/cli.py```on the terminal.
  

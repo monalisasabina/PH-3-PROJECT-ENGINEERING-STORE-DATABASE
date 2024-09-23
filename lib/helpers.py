@@ -120,6 +120,7 @@ def create_store_employee():
 def update_store_employee():
     id = input("Enter the employee's id: ")
     store_employee =session.query(StoreEmployee).get(id)
+
     if store_employee:
         name = input("Enter the store employee's new name: ")
         store_employee.name = name
@@ -142,11 +143,12 @@ def delete_store_employee():
 
 
 # TOOLS C,R,U,D
-
+# Method displays a list of tools stored in the database.
 def tool_list():
     tools = session.query(Tools).all()
     print(tools)
 
+# Method finds the tool in the database by name.
 def find_tool_by_name():
     name = input("Enter the tool name: ")
     tool= session.query(Tools).filter_by(name=name).first()
@@ -154,6 +156,7 @@ def find_tool_by_name():
         f"Tool {name} not found" 
     ) 
 
+# Method finds the tool by the id number.
 def find_tool_by_id():
     id = input("Enter the tool id: ")
     tool = session.query(Tools).get(id)
@@ -161,6 +164,7 @@ def find_tool_by_id():
         f"Tool id: {id} not valid"
     )    
 
+# Method adds new tools in the database.
 def create_tool():
     name =input("Enter the new tool's name: ")
     brand = input("Enter the new tool's brand: ")
@@ -175,6 +179,7 @@ def create_tool():
     else:
         print("Warning: One or all fields are blank") 
 
+# Method updates a tool credentials stored in the database.
 def update_tool():
     id = input("Enter the tool's id: ")
     tool =session.query(Tools).get(id)
@@ -192,6 +197,7 @@ def update_tool():
         print(tool)
     return None        
 
+# Method deletes tool from the database
 def delete_tool():
     id = input("Enter the tool's id: ")
     tool = session.query(Tools).get(id)
@@ -203,13 +209,13 @@ def delete_tool():
 
 
 #  TOOL RECORDS C,R,U,D methods
-# displays the list of tool records
+# Method displays the list of tool records
 def records_list():
     records = session.query(ToolRecords).all()
     print(records)
 
 
-# getting the tool records by id. Tool records doesn't have a name so getting the records
+# Method gets the tool records by id. Tool records doesn't have a name so getting the records
 # id is understandable
 def find_tool_records_by_id():
     id = input("Enter the tool record id: ")
@@ -218,12 +224,12 @@ def find_tool_records_by_id():
         f"Tool id: {id} not valid"
     ) 
     
-# creating a new tool record 
+# Method adds a tool record in the database.
 def create_tool_record():
     tool_id =input("Enter the tool id of the tool taken: ")
     employee_id = input("Enter the employee id of the employee taking the tool: ")
     store_employee_id = input("Enter the store-employee _id: ")
-    date_returned=None
+    date_returned=None  
 
     if tool_id or employee_id or store_employee_id:
       new_record = ToolRecords(
@@ -239,8 +245,10 @@ def create_tool_record():
     else:
         print("Warning: One or all fields are blank") 
 
+    # The date_returned is set to None cause initially when a tool is taken, its not returned immediately.
 
-#only updating the date_returned on the record to show the tool was returned
+
+#Method only updates the date_returned on the record to show when the tool was returned.
 def update_tool_record():
     id = input("Enter the tool record's id: ")
     tool =session.query(ToolRecords).get(id)
@@ -253,10 +261,9 @@ def update_tool_record():
     return None    
 
    # I have avoided upgrading other fields, to avoid manipulation.
-   # If the store clerk has access to fields, he/she maybe tempted to change records    
+   # If the store clerk has access to fields, he/she maybe tempted to change records.    
 
-#deleting a tool record
-# This could be in scenerio where the tool is
+#Method deletes a tool record.
 def delete_tool_records():
 
     password = getpass("Enter password: ")
@@ -277,6 +284,8 @@ def delete_tool_records():
 
   
     return None
+
+    # The password is only available to the store manager
 
 
 

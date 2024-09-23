@@ -2,7 +2,7 @@
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-# from models import Employee,Tools,StoreEmployee,ToolRecords
+
 
 if __name__ == '__main__':
     engine=create_engine('sqlite:///tools_store.db')

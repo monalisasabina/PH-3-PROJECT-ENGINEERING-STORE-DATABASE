@@ -1,15 +1,22 @@
 # import click
 
+# clip.py: Provides the structure and working of the CLI.
+
 from helpers import (
     exit_program, employee_list, find_employee_by_name,find_employee_by_id, create_employee, update_employee,delete_employee,
     store_employee_list,find_store_employee_by_name,find_store_employee_by_id,create_store_employee,update_store_employee,delete_store_employee,
     tool_list,find_tool_by_name,find_tool_by_id,create_tool,update_tool,delete_tool,
-    records_list,find_tool_records_by_id,create_tool_record,update_tool_record,delete_tool_records
+    records_list,find_tool_records_by_id,create_tool_record,update_tool_record,delete_tool_records,tools_taken_by_employee
 )
 
 def menu():
-    print("Please select an option:")
-    print("0. Exit the program")
+    print("\033[93m" + "\n⚙️ AAC Engineering Store Management System ⚙️" + "\033[0m")
+    print("\n\033[31mInstructions:\033[0m")
+    print("•Enter the number corresponding to your chosen option.")
+    print("•Press Enter after entering your choice.")
+    print("__________________________________________________________________________")
+    print("\nPlease select an option:\n")
+    print("0.  Exit the program")
     print("1.  List all the employees")
     print("2.  Find employee by name")
     print("3.  Find employee by id")
@@ -26,16 +33,16 @@ def menu():
     print("14. Find tool by name")
     print("15. Find tool by id")
     print("16. Add new tool")
-    print("17: Update tool details")
-    print("18: Delete tool")
-    print("19: List all the tool records")
-    print("20: Find tool record by id")
-    print("21: Add new tool record")
-    print("22: Update date returned")
-    print("23: Delete tool record")
+    print("17. Update tool details")
+    print("18. Delete tool")
+    print("19. List all the tool records")
+    print("20. Find tool record by id")
+    print("21. Add new tool record")
+    print("22. Update date returned")
+    print("23. Tools taken by employee")
+    print("24. Delete tool record")
+    print("\n*********************************END******************************************")
    
-    
-    
 
 def main():
     while True:
@@ -88,17 +95,11 @@ def main():
         elif choice == "22":
             update_tool_record()    
         elif choice == "23":
+            tools_taken_by_employee()
+        elif choice == "24":
             delete_tool_records()       
 
                 
-
-        
-
-
-
-
-
-
 if __name__ == "__main__":
     main()
 
@@ -227,8 +228,7 @@ if __name__ == "__main__":
 # @main.command()
 # def tool_records_delete():
 #     """Delete tool record."""
-#     delete_tool_records()        
-
+#     delete_tool_records()    
 
 # if __name__ == '__main__':
 #     main()

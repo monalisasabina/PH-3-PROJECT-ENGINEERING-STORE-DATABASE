@@ -4,9 +4,10 @@ Welcome, this is an engineering tool database for a company, AAC. The database s
 
 
 ## Project overview
+To access this database and CLI, fork and clone this repository in your terminal.
 
 ### Directory
-The most important files in the directory are :
+The project directory has directory called lib and some several files. The most important python files in the lib directory and database in the main directory.
 
   1. tools_store.db
      This is the engineering store database, where the tables employees, store_employees, tools and toolrecords are created.
@@ -19,9 +20,7 @@ The most important files in the directory are :
 
       - Tools: It creates the tools table. All the tools that are entered in the database go here. The columns show the id, name, brand and the date which the tool was bought.
 
-      - ToolRecords: It creates the toolrecords table. This table maintains the relationship of the tables mentioned above to this one. It is therefore an association table. You can follow this link to check the Entity Relationship Diagram, ERD:
-
-      [ENGINEERING_STORE_DATABASE_ERD](https://lucid.app/lucidspark/96e090bd-abbb-48d8-8946-6ee08fde2b24/edit?beaconFlowId=CF240903351EB75F&invitationId=inv_73e3c522-d98e-4be5-9d63-1223880795b1&page=0_0#) 
+      - ToolRecords: It creates the toolrecords table. This table maintains the relationship of the tables mentioned above to this one. It is therefore an association table. A one to many relationship is used here. The Entity Relationship Diagram, ERD:
 
       ![DATABASE_ERD](./ENGINEERING%20STORE%20ERD.png)
       
@@ -62,7 +61,7 @@ The most important files in the directory are :
                               print(tools)
                            
   
-  4. debug.py: It was used for debugging and also for displaying the same data in seed.py using ipdb, First you have to create an virtual environment with ```pipenv shell``` command then use command ```python lib/seed.py``` to push the data in database then run command ```python lib/debug.py``` to debug or also used it to display data by entering: ```session.query(Tools).all()``` to display the tool list.
+  4. debug.py: It is used for debugging and also for displaying the same data in seed.py using ipdb, First you have to create an virtual environment with ```pipenv shell``` command then use command ```python lib/seed.py``` to push the data in database then run command ```python lib/debug.py``` to debug or also used it to display data by entering: ```session.query(Tools).all()``` to display the tool list.
 
   5. helpers.py: It consists of CRUD- Create, Read , Update and Delete functions or methods for each table in the database. Before the functions I have the session set up first.
 
@@ -99,10 +98,13 @@ The most important files in the directory are :
       Other 'update' options work the same way.
       The 'Update date returned' option 22, works differently. It is used to update the date_returned column in the 'toolrecords' table. When a tool is returned, use this option put the date the tool was returned.
 
-   6.  Delete employee
-       This option(option 6) deletes an employee from the database. The employee could be fired or resigned so using this option deletes them from the database. The same also applies for the store employees.
-       The delete tool option deletes the tool from the database. This could be may be if the tool is completely spoilt or if it were stolen.
-       The 'delete tool record" option is password protected. You'll be asked to enter a password (for project:12345). This should be ideally for the store manager for security purposes.
+   6. Delete employee
+      This option(option 6) deletes an employee from the database. The employee could be fired or resigned so using this option deletes them from the database. The same also applies for the store employees.
+      The delete tool option deletes the tool from the database. This could be may be if the tool is completely spoilt or if it were stolen.
+      The 'delete tool record" option is password protected. You'll be asked to enter a password (for project:12345). This should be ideally for the store manager for security purposes.
+
+   7.  Tools taken by employee
+       Option 23, this option basically checks an employee has taken what tool or tools. This option asks for the employee's id, then afterwards the name of the employee is shown, then the tools taken are showed in a list. more details provided about the tool are displayed in form of a dictionary. So basically you'll have a list of dictionaries, if many tools were taken.
 
    
 ## References
@@ -110,3 +112,4 @@ The most important files in the directory are :
 2. Building CLI: https://www.youtube.com/watch?v=kTaqR1WyT8A
 3. Using Click: https://click.palletsprojects.com/en/8.1.x/commands/#merging-multi-commands
 4. Using getpass() for passwords: https://www.youtube.com/watch?v=hk3ubc1-ZGg
+5. Reading material on Canvas

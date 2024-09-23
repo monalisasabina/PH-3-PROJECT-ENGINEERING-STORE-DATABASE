@@ -35,7 +35,6 @@ if __name__ == '__main__':
     session.add_all([monalisa,sharon,daniel,joshua,manu,simon])
     session.commit()
     
-
     # store employees list
     fauz = StoreEmployee(name="Fauz Mohammed",role="Store Manager")
     ruth = StoreEmployee(name="Ruth Ng'ang'a", role="Store Clerk")
@@ -45,9 +44,6 @@ if __name__ == '__main__':
     
     session.add_all([fauz,ruth,joseph,elizabeth,jane])
     session.commit()
-
-
-
 
     #tool list
     pliers = Tools(name='Pliers', brand='Stanley', no_of_tools=5) 
@@ -61,17 +57,17 @@ if __name__ == '__main__':
     session.commit()  
 
 
-# records list
-    # added record: The tool_id 1 is taken by employee 1, assigned by store_employee 1
+    # records list
+    # in record1, tool_id 1 is taken by employee 1, assigned by store_employee 1
     record1=ToolRecords(
         date_returned=None, 
         tool_id= 1,
         employee_id=1,
         store_employee_id=1
     )
-
+    # in record2, tool_id 1 is returned
     record2 =ToolRecords(
-        date_returned=datetime(2024,9,21),
+        date_returned= '2024-09-21',
         tool_id=1,
         employee_id=1,
         store_employee_id=1

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# models.py:This file contains all the models.
+
 from datetime import datetime
 from sqlalchemy.orm import declarative_base,relationship
 from sqlalchemy import MetaData,Column,Integer,String,DateTime,ForeignKey

@@ -1,3 +1,5 @@
+# helpers.py: File contains the functions that are used to access data in the database in various ways.
+
 from models import Employee, StoreEmployee, Tools,ToolRecords
 from sqlalchemy import create_engine  
 from sqlalchemy.orm import sessionmaker
@@ -13,11 +15,12 @@ def exit_program():
     print("Goodbye!")
     exit()
     
-# Employee C,R,U,D methods.
+# Employee C,R,U,D methods......................................................
 # Method displays the list of employees in the store's data database.
 def employee_list():
     employees = session.query(Employee).all()
     print(employees)
+
 
 # Method finds the name of an employee in the database.
 def find_employee_by_name():
@@ -27,6 +30,7 @@ def find_employee_by_name():
         f"Employee {name} not found" 
     )
 
+
 # Method finds the employee's id in the store database.
 def find_employee_by_id():
     id = input("Enter the employee's id: ")
@@ -34,6 +38,7 @@ def find_employee_by_id():
     print (employee) if employee else print(
         f"Employee id: {id} not valid"
     )
+
 
 # Method adds a new employee in the store database.
 def create_employee():
@@ -50,6 +55,7 @@ def create_employee():
     else:
         # The warning is given out if one or all fields were left blank.
         print("Warning: One or all fields are blank")
+
 
 # Method updates an employees credentials in the store database.
 def update_employee():
@@ -68,6 +74,7 @@ def update_employee():
         print(employee)
     return None
 
+
 # Method deletes an employee from the store database.
 def delete_employee():
     id = input("Enter the employee's id: ")
@@ -80,7 +87,7 @@ def delete_employee():
 
 
 
-# STORE EMPLOYEE C,R,U,D
+# STORE EMPLOYEE C,R,U,D.........................................................
 # Method displays a list of store employees int the store database.
 def store_employee_list():
     store_employees = session.query(StoreEmployee).all()
@@ -142,7 +149,8 @@ def delete_store_employee():
     return None
 
 
-# TOOLS C,R,U,D
+
+# TOOLS C,R,U,D..................................................................
 # Method displays a list of tools stored in the database.
 def tool_list():
     tools = session.query(Tools).all()
@@ -208,7 +216,7 @@ def delete_tool():
     return None     
 
 
-#  TOOL RECORDS C,R,U,D methods
+#  TOOL RECORDS C,R,U,D methods..............................................................
 # Method displays the list of tool records
 def records_list():
     records = session.query(ToolRecords).all()
@@ -254,18 +262,55 @@ def update_tool_record():
     tool =session.query(ToolRecords).get(id)
 
     if tool:
-        date_returned = input("Enter the date when the tool is returned: ")
+        date_returned = input("Enter the date when the tool is returned (YY-MM-DD): ")
         tool.date_returned = date_returned
         session.commit()
+
         print(tool)
     return None    
 
    # I have avoided upgrading other fields, to avoid manipulation.
    # If the store clerk has access to fields, he/she maybe tempted to change records.    
 
+
+# Method to check the tools an employee has taken
+def tools_taken_by_employee():
+    employee_id = input("Enter the employee's id: ")
+    tool_records = (
+        session.query(ToolRecords, Employee, Tools)
+        .join(Employee, ToolRecords.employee_id == Employee.id)  #employee_id column in TooRecords matches the id in Employee table
+        .join(Tools, ToolRecords.tool_id == Tools.id)            #tool_id in ToolRecord matches id in the tools table
+        .filter(ToolRecords.employee_id == employee_id)          #restricts the results to those records
+        .all()
+    )
+    # join: used to combine rows from two or more tables based on foreign key or any related field
+    employee=session.query(Employee).get(employee_id)
+
+    if tool_records and employee:
+
+        print(f"Employee Name: {employee.name}")
+
+        result = []  # List to store each tool record as a dictionary
+
+        for record,_,tool in tool_records:
+            record_dict = {
+                "Tool Name": tool.name,
+                "Tool Record ID": record.id,
+                "Tool ID": record.tool_id,
+                "Date Returned": record.date_returned,
+            }
+            result.append(record_dict)  # Add the dictionary to the list
+
+        print(result)    
+        
+    else:
+        print(f"No tools found for employee ID {employee_id}.")
+
+
 #Method deletes a tool record.
 def delete_tool_records():
 
+    # used getpass to avoid showing the password on the terminal
     password = getpass("Enter password: ")
 
     if password == "12345":

@@ -73,37 +73,37 @@ The project directory has directory called lib and some several files. The most 
   The CLI user should be a store employee and the person who developed the database. The CLI works hand in hand with the functions in the helpers.py file. 
   So I'll explain some options in the list provided to you once you access the CLI. 
 
-   0. Exit the program
+   0. Exit the program:
       As the option suggests. It closes the program or the CLI. You type "0", the number accompanying it, press Enter and then you'll be met with a "GoodBye!" message and the program exits.
 
 
-   1. List all the employees
+   1. List all the employees:
       This option(option 1)lists all the employees from the "employees" table in the database. Type it's menu number "1", press Enter and the list is brought. The same also applies for, "list all store employees", "list all the tools and "list all the tool records" options.
 
-   2. Find employee by name
+   2. Find employee by name:
       This option (option 2) finds the name of the employee. When you access the option, you'll be told enter the employees name as stored in the 'employees' table. When you put a wrong name or the name is written in the wrong format, you'll be met by an error message.
       'find by name' option also applies the same for the store employees and tools stored in the database.
 
-   3. Find employee by id
+   3. Find employee by id:
       This option finds the employees in the database by their id number. This is a much better option than finding their names. It is also faster since you only type a number(id) as opposed to writing their full names. 
       So by accessing this option(option 3), you'll be prompted to enter the id number, press Enter and the employee details are brought.
       'find by id' option works the same for store employee, tools and tool records.
 
-   4. Add new employee
+   4. Add new employee:
       A new employee who is hired in the company, is added in the store database using this option. When you access it(option 4), you'll be prompted to add the new employees name, department and role(position).
       The other 'add something' options  in the CLI almost work in the same way. They add the necessary details.
 
-   5. Update employee detail
+   5. Update employee detail:
       This option (option 5)is used when may be the employee's name was registered differently, may be the employee's role was changed. So it basically changes a detail or two on the employee who was stored in the database.
       Other 'update' options work the same way.
       The 'Update date returned' option 22, works differently. It is used to update the date_returned column in the 'toolrecords' table. When a tool is returned, use this option put the date the tool was returned.
 
-   6. Delete employee
+   6. Delete employee:
       This option(option 6) deletes an employee from the database. The employee could be fired or resigned so using this option deletes them from the database. The same also applies for the store employees.
       The delete tool option deletes the tool from the database. This could be may be if the tool is completely spoilt or if it were stolen.
       The 'delete tool record" option is password protected. You'll be asked to enter a password (for project:12345). This should be ideally for the store manager for security purposes.
 
-   7.  Tools taken by employee
+   7.  Tools taken by employee:
        Option 23, this option basically checks an employee has taken what tool or tools. This option asks for the employee's id, then afterwards the name of the employee is shown, then the tools taken are showed in a list. more details provided about the tool are displayed in form of a dictionary. So basically you'll have a list of dictionaries, if many tools were taken.
 
    

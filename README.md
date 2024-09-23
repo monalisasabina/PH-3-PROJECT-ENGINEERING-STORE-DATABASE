@@ -49,9 +49,8 @@ The most important files in the directory are :
                             f"at {self.date_taken}. The tool was returned on {self.date_returned}" +\
                             f". {self.store_employee.name} was in charge>"
 
-                            
-      
-     
+   
+
 
   3. seed.py:
      It consists of the sample data for the database. In the terminal in the project directory you can run ```$python lib/seed.py``` to enter the sample date in the database. Also by running the code, you will get list of the all the data on the terminal. I used the sqlalchemy query methods to display that.  Example: 

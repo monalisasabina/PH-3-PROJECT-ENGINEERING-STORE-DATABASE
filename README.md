@@ -23,7 +23,7 @@ The most important files in the directory are :
 
       [ENGINEERING_STORE_DATABASE_ERD](https://lucid.app/lucidspark/96e090bd-abbb-48d8-8946-6ee08fde2b24/edit?beaconFlowId=CF240903351EB75F&invitationId=inv_73e3c522-d98e-4be5-9d63-1223880795b1&page=0_0#) 
 
-      ![DATABASE_ERD](./ENGINEERING%STORE%ERD.png)
+      ![DATABASE_ERD](./ENGINEERING%20STORE%20ERD.png)
       
       The table has the following columns: id, date_taken and date_returned, tool_id, employee_id, and store_employee_id.
             

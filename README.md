@@ -44,8 +44,7 @@ The most important files in the directory are :
                             f"at {self.date_taken}. The tool was returned on {self.date_returned}" +\
                             f". {self.store_employee.name} was in charge>"
 
-        https://github.com/monalisasabina/PH-3-PROJECT-ENGINEERING-STORE-DATABASE/blob/b7b46f599fd0cff7eec3dccf1b40364a3caf1b12/lib/models.py#L75C1-L95C60
-
+   
 
 
   3. seed.py:
